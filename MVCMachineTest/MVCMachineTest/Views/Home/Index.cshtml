@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Home";
+}
+
+<h1 class="mb-3">Products</h1>
+<a class="btn btn-primary" asp-action="AddProduct">Add Product</a>
+
+<div class="mb-3">
+    <table class="class="table table-striped"">
+        <thead>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(model => model.ProductID)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.ProductName)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Category.CategoryID)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Category.CategoryName)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var product in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(item => product.ProductID)</td>
+                        <td>@Html.DisplayFor(item => product.ProductName)</td>
+                        <td>@Html.DisplayFor(item => product.Category.CategoryID)</td>
+                        <td>@Html.DisplayFor(item => product.Category.CategoryName)</td>
+                    </tr>
+                }
+            }
+            
+        </tbody>
+    </table>
+</div>
+
