@@ -67,6 +67,8 @@ namespace MVCMachineTest.Controllers
         public IActionResult ViewProduct(string productId)
         {
             Product product = ProductRepository.GetProduct(productId);
+            Category category = CategoryRepository.GetCategory(product.CategoryID);
+            product.CategoryName = category.CategoryName;
             return View(product);
         }
 

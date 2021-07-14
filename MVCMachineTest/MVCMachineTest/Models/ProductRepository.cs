@@ -42,8 +42,12 @@ namespace MVCMachineTest.Models
 
         public Product UpdateProduct(Product product)
         {
-            DbContext.Products.Attach(product);
-            DbContext.SaveChanges();
+            if (product != null)
+            {
+                var productUpdate= DbContext.Products.Attach(product);
+                productUpdate.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                DbContext.SaveChanges();
+            }
             return product;
         }
     }

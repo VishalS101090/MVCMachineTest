@@ -23,11 +23,18 @@ namespace MVCMachineTest.Models
 
         public Category AddCategory(Category category)
         {
-            var result = DbContext.Categories.Add(category);
-            DbContext.SaveChanges();
+            if (category != null)
+            {
+                var result = DbContext.Categories.Add(category);
+              //  result.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                DbContext.SaveChanges();
+            }
             return category;
         }
 
-       
+        public Category GetCategory(string id)
+        {
+            return DbContext.Categories.Find(id);
+        }
     }
 }
