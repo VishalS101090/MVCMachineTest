@@ -14,8 +14,13 @@ namespace MVCMachineTest.Models
         [Required(ErrorMessage = "Enter product name"), Display(Name = "Product Name"), MaxLength(30), MinLength(4), StringLength(30)]
         public string ProductName { get; set; }
 
-        [ForeignKey("Category")]
+        [ForeignKey("Category"), Required(AllowEmptyStrings = false, ErrorMessage = "Please Select Category.")]
         public string CategoryID { get; set; }
+
+        [Display(Name = "Cateogry"), NotMapped]
+        public string CategoryName { get; set; }
+
+
 
         public Category Category { get; set; }
 

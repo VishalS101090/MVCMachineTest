@@ -16,12 +16,12 @@ namespace MVCMachineTest.Models
 
         public IEnumerable<Product> GetProducts()
         {
-            return DbContext.Products;
+            return DbContext.Products.ToList();
         }
 
         public Product AddProduct(Product product)
         {
-            DbContext.Products.Add(product);
+            var result = DbContext.Products.Add(product);
             DbContext.SaveChanges();
             return product;
         }

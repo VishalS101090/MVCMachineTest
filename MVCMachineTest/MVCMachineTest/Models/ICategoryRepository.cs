@@ -7,7 +7,7 @@ namespace MVCMachineTest.Models
 {
     public interface ICategoryRepository
     {
-        IEnumerable<Category> GetProducts();
-        Category AddProduct(Category product);
+        IEnumerable<Category> GetCategories();
+        Category AddCategory(Category category);
     }
 }

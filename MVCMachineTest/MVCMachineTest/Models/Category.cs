@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,9 +9,9 @@ namespace MVCMachineTest.Models
 {
     public class Category
     {
-        [Key]
+        [Key,Display(Name ="ID")]
         public string CategoryID { get; set; }
-        [Required(ErrorMessage = "Enter category name"), Display(Name = "Category Name"), MaxLength(30), MinLength(4), StringLength(30)]
+        [Required(ErrorMessage = "Enter category name"), Display(Name = "Category Name"), MaxLength(30), MinLength(4)]
         public string CategoryName { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime CreationTime { get; set; }

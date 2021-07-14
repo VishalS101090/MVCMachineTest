@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "Category";
+}
+
+
+<h1 class="mb-3">Category</h1>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+    <a class="btn btn-dark" asp-action="AddCategory">Add Category</a>
+</div>
+
+<div class="mb-3">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(model => model.CategoryID)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.CategoryName)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.CreationTime)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var category in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(item => category.CategoryID)</td>
+                        <td>@Html.DisplayFor(item => category.CategoryName)</td>
+                        <td>@Html.DisplayFor(item => category.CreationTime)</td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>

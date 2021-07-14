@@ -15,14 +15,15 @@ namespace MVCMachineTest.Models
         }
 
 
-        public IEnumerable<Category> GetProducts()
+        public IEnumerable<Category> GetCategories()
         {
-            return DbContext.Categories;
+            return DbContext.Categories.ToList();
         }
 
-        public Category AddProduct(Category category)
+
+        public Category AddCategory(Category category)
         {
-            DbContext.Categories.Add(category);
+            var result = DbContext.Categories.Add(category);
             DbContext.SaveChanges();
             return category;
         }
