@@ -31,6 +31,7 @@ namespace MVCMachineTest
             {
                 options.EnableEndpointRouting = false;
             });
+            services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
         }

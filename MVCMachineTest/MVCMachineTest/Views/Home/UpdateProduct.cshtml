@@ -1,0 +1,41 @@
+﻿@model AddProductViewModel
+@{
+    ViewData["Title"] = "Update Product";
+}
+
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <form asp-action="UpdateProduct">
+            <input hidden asp-for="Product.ProductID" />
+            <div class="form-group">
+                <label asp-for="Product.ProductName" class="control-label"></label>
+                <input asp-for="Product.ProductName" class="form-control" />
+                <span asp-validation-for="Product.ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.CategoryID" class="control-label"></label>
+                <select asp-for="Product.CategoryID" class="form-control">
+                    <option value="" disabled selected>Select Category</option>
+                    @if (Model.Categories != null && Model.Categories.Any())
+                    {
+                        @foreach (var category in Model.Categories)
+                        {
+                            <option value="@category.CategoryID">@category.CategoryName</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="Product.CategoryID" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a class="btn btn-primary" asp-action="Index">Back</a>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
