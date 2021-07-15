@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,20 +22,29 @@ namespace MVCMachineTest.Models
 
         public Product AddProduct(Product product)
         {
-            var result = DbContext.Products.Add(product);
-            DbContext.SaveChanges();
+            if (product != null)
+            {
+                try
+                {
+                    var result = DbContext.Products.Add(product);
+                    DbContext.SaveChanges();
+                }
+                catch (DbUpdateException ex)
+                {
+                    throw;
+                }
+            }
             return product;
         }
 
         public Product GetProduct(string id)
         {
-            Product product = DbContext.Products.FirstOrDefault(p => p.ProductID.Equals(id));
-            return product;
+            return DbContext.Products.Find(id);
         }
 
         public Product DeleteProduct(string id)
         {
-            Product product = DbContext.Products.FirstOrDefault(p => p.ProductID.Equals(id));
+            Product product = DbContext.Products.Find(id);
             DbContext.Remove(product);
             DbContext.SaveChanges();
             return product;
@@ -45,7 +55,7 @@ namespace MVCMachineTest.Models
             if (product != null)
             {
                 var productUpdate= DbContext.Products.Attach(product);
-                productUpdate.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                productUpdate.State = EntityState.Modified;
                 DbContext.SaveChanges();
             }
             return product;

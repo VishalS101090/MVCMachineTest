@@ -11,9 +11,9 @@ namespace MVCMachineTest.Models
     {
         [Key,Display(Name ="ID")]
         public string CategoryID { get; set; }
-        [Required(ErrorMessage = "Enter category name"), Display(Name = "Category Name"), MaxLength(30), MinLength(4)]
+        [Required(ErrorMessage = "Enter category name"), Display(Name = "Name"), MaxLength(30), MinLength(4)]
         public string CategoryName { get; set; }
-        [DataType(DataType.DateTime)]
+        [Display(Name = "Created On"), DataType(DataType.DateTime)]
         public DateTime CreationTime { get; set; }
     }
 }

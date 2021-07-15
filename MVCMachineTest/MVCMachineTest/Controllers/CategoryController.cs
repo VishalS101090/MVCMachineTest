@@ -34,11 +34,49 @@ namespace MVCMachineTest.Controllers
         {
             if (ModelState.IsValid)
             {
-                category.CategoryID = Guid.NewGuid().ToString();
-                category.CreationTime = DateTime.Now;
-                CategoryRepository.AddCategory(category);
+                try
+                {
+                    category.CategoryID = Guid.NewGuid().ToString();
+                    category.CreationTime = DateTime.Now;
+                    CategoryRepository.AddCategory(category);
+                }
+                catch (Exception ex)
+                {
+
+                    //throw;
+                }
             }
             return View();
         }
+
+        [HttpGet]
+        public IActionResult ViewCategory(string id)
+        {
+            Category category = CategoryRepository.GetCategory(id);
+            return View(category);
+        }
+
+        [HttpGet]
+        public IActionResult Update(string id)
+        {
+            Category category = CategoryRepository.GetCategory(id);
+            return View(category);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                CategoryRepository.Update(category);
+            }
+            return View(category);
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(string id)
+        {
+            return View();
+        }   
     }
 }

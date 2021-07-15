@@ -1,4 +1,10 @@
-﻿body {
+﻿@font-face {
+    font-family: Arvo;
+    src:url(../fonts/arvo/Arvo-Regular.otf)format('opentype');
+}
+
+body {
+    font-family:Arvo;
 }
 
 td

@@ -17,6 +17,7 @@
                 <th scope="col">@Html.DisplayNameFor(model => model.ProductName)</th>
                 <th scope="col">@Html.DisplayNameFor(model => model.CategoryID)</th>
                 <th scope="col">@Html.DisplayNameFor(model => model.CategoryName)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.CreationTime)</th>
                 <th></th>
             </tr>
         </thead>
@@ -27,9 +28,10 @@
                 {
                     <tr>
                         <td>@Html.DisplayFor(item => product.ProductID)</td>
-                        <td>@Html.DisplayFor(item => product.ProductName)</td>
+                        <td><strong>@Html.DisplayFor(item => product.ProductName)</strong></td>
                         <td>@Html.DisplayFor(item => product.CategoryID)</td>
                         <td>@Html.DisplayFor(item => product.CategoryName)</td>
+                        <td>@Html.DisplayFor(item => product.CreationTime)</td>
                         <td>
                             <a class="btn btn-primary" asp-action="ViewProduct" asp-route-productId="@product.ProductID">View</a>
                             <a class="btn btn-primary" asp-action="UpdateProduct" asp-route-productId="@product.ProductID">Update</a>

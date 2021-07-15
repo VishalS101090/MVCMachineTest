@@ -47,19 +47,26 @@ namespace MVCMachineTest.Controllers
         [HttpPost]
         public IActionResult AddProduct(Product product)
         {
+            AddProductViewModel viewModel = new AddProductViewModel();
             if (ModelState.IsValid)
             {
-                product.ProductID = Guid.NewGuid().ToString();
-                product.CreationTime = DateTime.Now;
-                ProductRepository.AddProduct(product);
+                try
+                {
+                    product.ProductID = Guid.NewGuid().ToString();
+                    product.CreationTime = DateTime.Now;
+                    if (ProductRepository.AddProduct(product) != null)
+                    {
+                        viewModel.Message = $"<strong>{product.ProductName}</strong> created successfully!";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    viewModel.Message = $"Production creation fail due to: {ex.InnerException}";
+                }
             }
-
             IEnumerable<Category> categories = CategoryRepository.GetCategories();
-            AddProductViewModel viewModel = new AddProductViewModel()
-            {
-                Product = product,
-                Categories = categories,
-            };
+            viewModel.Product = product;
+            viewModel.Categories = categories;
             return View(viewModel);
         }
 

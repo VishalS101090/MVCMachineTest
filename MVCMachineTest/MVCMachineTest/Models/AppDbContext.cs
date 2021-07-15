@@ -15,5 +15,13 @@ namespace MVCMachineTest.Models
         {
 
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Category>(category => { category.HasIndex(c => c.CategoryName).IsUnique(true); });
+            modelBuilder.Entity<Product>().HasIndex(p => p.ProductName).IsUnique(true);
+            
+        }
     }
 }

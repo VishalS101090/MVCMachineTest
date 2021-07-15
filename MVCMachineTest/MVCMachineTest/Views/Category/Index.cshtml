@@ -11,11 +11,12 @@
 
 <div class="mb-3">
     <table class="table table-striped">
-        <thead>
+        <thead class="table-dark">
             <tr>
                 <th scope="col">@Html.DisplayNameFor(model => model.CategoryID)</th>
                 <th scope="col">@Html.DisplayNameFor(model => model.CategoryName)</th>
                 <th scope="col">@Html.DisplayNameFor(model => model.CreationTime)</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -23,11 +24,16 @@
             {
                 @foreach (var category in Model)
                 {
-                    <tr>
-                        <td>@Html.DisplayFor(item => category.CategoryID)</td>
-                        <td>@Html.DisplayFor(item => category.CategoryName)</td>
-                        <td>@Html.DisplayFor(item => category.CreationTime)</td>
-                    </tr>
+            <tr>
+                <td>@Html.DisplayFor(item => category.CategoryID)</td>
+                <td><strong>@Html.DisplayFor(item => category.CategoryName)</strong></td>
+                <td>@Html.DisplayFor(item => category.CreationTime)</td>
+                <td>
+                    <a class="btn btn-primary" asp-action="ViewCategory" asp-route-id="@category.CategoryID">View</a>
+                    <a class="btn btn-primary" asp-action="Update" asp-route-id="@category.CategoryID">Update</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@category.CategoryID">Delete</a>
+                </td>
+            </tr>
                 }
             }
 

@@ -10,5 +10,8 @@ namespace MVCMachineTest.Models
         IEnumerable<Category> GetCategories();
         Category AddCategory(Category category);
         Category GetCategory(string  id);
+        Category Update(Category category);
+        Category Delete(string id);
+
     }
 }
